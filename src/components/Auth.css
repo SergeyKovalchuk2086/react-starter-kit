@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+    font-size: 20px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.content {
+    margin: 200px auto 0;
+    max-width: 400px;
+    max-height: 600px;
+    padding: 15px;
+    border: 0.1px solid black;
+}
+
+.content__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content__body button {
+    margin-top: 15px;
+}
+
+.content__body-username, .content__body-password {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.content__body-password label {
+    margin: 15px 0;
+}
+.content__body-username label {
+    margin-bottom: 15px;
+}
