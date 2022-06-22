@@ -1,18 +1,34 @@
-import React from 'react';
-import './App.css';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Auth from "./components/auth/Auth";
-import Main from "./components/Main";
+import { observer } from 'mobx-react-lite'
+import { useEffect } from 'react'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import { appRoutes, routeElements } from './configs'
+import Auth from './pages/Auth'
+import stores from './store'
 
-function App() {
+const App = () => {
+  const authStore = stores.authStore
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if(!authStore.isAuth) {
+      navigate(appRoutes.auth)
+    }
+  }, [authStore.isAuth, navigate])
+  
   return (
-      <BrowserRouter>
-          <Routes>
-              <Route path='/' element={<Auth />}/>
-              <Route path='main' element={<Main />}/>
-          </Routes>
-    </BrowserRouter>
-  );
+    <Routes>
+      <Route path='/auth' element={<Auth />}/>
+      {routeElements.map(item => {
+        return (
+          <Route
+            key={item.id}
+            path={item.path}
+            element={<item.component />}
+          />
+        )
+      })}
+    </Routes>
+  )
 }
 
-export default App;
+export default observer(App)

@@ -1,0 +1,15 @@
+.primary {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  &__content {
+    flex: 1 1 auto;
+    background: darkgrey;
+    padding: 50px;
+  }
+  &__footer {
+    background: rgb(7, 5, 5);
+    padding: 50px;
+    color: darkgrey;
+  }
+}
