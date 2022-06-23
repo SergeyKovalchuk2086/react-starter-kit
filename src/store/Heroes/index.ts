@@ -1,15 +1,19 @@
-import { makeAutoObservable } from 'mobx'
-// import { action, makeAutoObservable, observable } from 'mobx'
+import { action, makeAutoObservable, observable } from 'mobx'
+import { IHeroesPage } from '../../utils/apiServices/types'
 
 class HeroesStore {
+  heroesPage = {} as IHeroesPage
 
   constructor() {
     makeAutoObservable(this, {
-      // isAuth: observable,
-      // setIsAuth: action
+      heroesPage: observable,
+      changeHeroesPage: action,
     })
   }
 
+  changeHeroesPage (page: IHeroesPage) {
+    this.heroesPage = page
+  }
 }
 
 export default HeroesStore

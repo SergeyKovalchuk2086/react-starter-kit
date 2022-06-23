@@ -1,14 +1,14 @@
 import DataService from '.'
-import { IRequestPost } from './types'
+import { IHeroesPage, IRequestPost } from './types'
 
 class HeroesService extends DataService {
   constructor () {
-    super(`${process.env.BASE_URL}/api/v1`)
+    super(`${process.env.REACT_APP_API_BASE_URL}`)
   }
 
-  public async getHeroesPage (): Promise<any> {
-    const r = (await this.get<IRequestPost<any>>('')).data.result
-    return r
+  public async getHeroesPage (page: number): Promise<IHeroesPage> {
+    const r = await this.get<IRequestPost<IHeroesPage>>(`/people/?page=${page}`)
+    return r.data
   }
 }
 
