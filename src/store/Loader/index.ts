@@ -1,7 +1,7 @@
 import { action, makeAutoObservable, observable } from 'mobx'
 
 class LoaderStore {
-  isLoading = true
+  isLoading = false
 
   constructor() {
     makeAutoObservable(this, {
