@@ -1,6 +1,6 @@
 import AuthStore from './Auth'
 import HeroesStore from './Heroes'
-import LoaderStore from "./Loader";
+import LoaderStore from './Loader'
 
 const stores = {
   authStore: new AuthStore(),
