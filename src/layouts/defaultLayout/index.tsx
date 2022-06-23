@@ -1,6 +1,6 @@
 import Header from '../../components/header'
+import Loader from '../../components/loader'
 import s from './styles.module.scss'
-import Loader from "../../components/loader";
 
 interface IProps {
   children: JSX.Element[] | JSX.Element
