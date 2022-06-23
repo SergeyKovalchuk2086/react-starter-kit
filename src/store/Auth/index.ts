@@ -1,4 +1,4 @@
-import { action, makeAutoObservable, observable } from "mobx"
+import { action, makeAutoObservable, observable } from 'mobx'
 
 class AuthStore {
   isAuth = false

@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import { appRoutes, routeElements } from './configs'
 import Auth from './pages/Auth'
 import stores from './store'
+import { appRoutes, routeElements } from './configs'
 
 const App = () => {
   const authStore = stores.authStore

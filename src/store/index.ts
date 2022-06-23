@@ -1,5 +1,5 @@
-import AuthStore from "./Auth"
-import HeroesStore from "./Heroes"
+import AuthStore from './Auth'
+import HeroesStore from './Heroes'
 
 const stores = {  
   authStore: new AuthStore(),
