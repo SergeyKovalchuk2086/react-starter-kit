@@ -14,16 +14,20 @@ enum PaginationDirection {
 
 const Heroes = () => {
   const heroesStore = stores.heroesStore
+  const loader = stores.loaderStore
+
   const [page, setPage] = useState(1)
 
   const fetchData = useCallback(async() => {
     try {
+      loader.setIsLoading(true)
       const r = await heroesService.getHeroesPage(page)
       heroesStore.changeHeroesPage(r)
     } catch (error) {
       console.log('error: ', error)
     }
-  }, [heroesStore, page])
+    loader.setIsLoading(false)
+  }, [heroesStore, page, loader])
 
   useEffect(() => { fetchData() }, [fetchData])
 

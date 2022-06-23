@@ -1,4 +1,5 @@
 import Header from '../../components/header'
+import Loader from '../../components/loader'
 import s from './styles.module.scss'
 
 interface IProps {
@@ -15,6 +16,7 @@ const DefaultLayout = (props: IProps) => {
       <div className={s.primary__footer}>
         FOOTER
       </div>
+      <Loader/>
     </div>
   )
 }
