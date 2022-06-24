@@ -1,4 +1,5 @@
 import Header from '../../components/header'
+import Footer from '../../components/footer'
 import Loader from '../../components/loader'
 import BaseModalContainer from '../../components/ui/BaseModalContainer'
 import s from './styles.module.scss'
@@ -14,9 +15,7 @@ const DefaultLayout = (props: IProps) => {
       <div className={s.primary__content}>
         { props.children }
       </div>
-      <div className={s.primary__footer}>
-        FOOTER
-      </div>
+      <Footer />
       <Loader/>
       <BaseModalContainer />
     </div>
