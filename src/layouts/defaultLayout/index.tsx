@@ -1,5 +1,6 @@
 import Header from '../../components/header'
 import Loader from '../../components/loader'
+import BaseModalContainer from '../../components/ui/BaseModalContainer'
 import s from './styles.module.scss'
 
 interface IProps {
@@ -17,6 +18,7 @@ const DefaultLayout = (props: IProps) => {
         FOOTER
       </div>
       <Loader/>
+      <BaseModalContainer />
     </div>
   )
 }

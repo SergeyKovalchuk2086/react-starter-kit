@@ -9,7 +9,7 @@ const IMAGE_URL = process.env.REACT_APP_BASE_IMAGE_URL
 
 const HeroCard = (props: IProps) => {
   const { card } = props
-  const [currentId, setCurrentId] = useState<string | null>(null)
+  const [currentId, setCurrentId] = useState<string>("1")
 
   useEffect(() => {
     const id = card.url.replace(/[^0-9]/g,"")
