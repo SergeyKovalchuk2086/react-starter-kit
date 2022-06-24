@@ -33,7 +33,7 @@ const Auth = () => {
           onSubmit={onSubmit}
           validationSchema={validationAuthSchema}
         >
-          {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }: any): any => (
+          {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }: any): JSX.Element => (
             <div className={style.content}>
                 <div className={style.content__body}>
                     <p>Login</p>

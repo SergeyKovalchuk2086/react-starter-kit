@@ -9,8 +9,12 @@ const Home = () => {
   const handelClick = () => {
     modal.showModal({
       key: ModalKeY.Confirmation,
-      text: 'dzasfaf',
-      title: 'sdgfsgfs'
+      text: 'Lorem Lorem Lorem Lorem Lorem Lorem Lorem LoremLorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem LoremLorem Lorem Lorem Lorem Lorem Lorem' ,
+      title: 'TEST MODAL',
+      handler: () => {
+        alert('You clicked OK')
+        modal.hideModal()
+      }
     })
   }
 

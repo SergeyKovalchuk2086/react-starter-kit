@@ -4,7 +4,8 @@ import { ModalKeY } from './modals'
 export interface IOptionsModal {
   key: ModalKeY
   title: string,
-  text: string
+  text: string,
+  handler?<T>(arg?: T): void
 }
 
 class ModalsStore {
