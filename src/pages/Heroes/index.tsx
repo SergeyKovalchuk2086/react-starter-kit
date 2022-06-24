@@ -12,6 +12,8 @@ enum PaginationDirection {
   NEXT
 }
 
+const IMAGE_URL = process.env.REACT_APP_BASE_IMAGE_URL
+
 const Heroes = () => {
   const heroesStore = stores.heroesStore
   const loader = stores.loaderStore
@@ -39,14 +41,27 @@ const Heroes = () => {
     }
   }
 
+  const getImage = (url: string): string => {
+    const id = url.replace(/[^0-9]/g,"")
+    if (id) {
+      return `${IMAGE_URL}/${id}.jpg`
+    }
+    return ''
+  }
+
   return (
     <DefaultLayout>
       <div className={s.heroes}>
         <h3 className={`${s.heroes__title} pageTitle`}>THE STAR WARS HEROES</h3>
         <div className={s.heroes__box}>
-          {heroesStore.heroesPage?.results?.map((card, id) => {
+          {heroesStore.heroesPage?.results?.map(card => {
+            const img = getImage(card.url)
             return (
-              <HeroCard key={card.height + card.name} card={card} />
+              <HeroCard
+                key={card.height + card.name}
+                card={card}
+                img={img}
+              />
             )
           })}
         </div>
