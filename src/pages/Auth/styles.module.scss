@@ -8,22 +8,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        &_username {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            & label {
-                margin-bottom: 15px;
-            }
-        }
-        &_password {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            & label {
-                margin: 15px 0;
-            }
-        }
         &_error {
             color: red;
             font-size: 12px;

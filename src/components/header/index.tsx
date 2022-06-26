@@ -1,9 +1,16 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { appRoutes, routeElements } from '../../configs'
+import { NavLink } from 'react-router-dom'
+import { routeElements } from '../../configs'
 import s from './styles.module.scss'
+import stores from "../../store";
 
 const Header = () => {
+  const auth = stores.authStore
+
+  const logOut = () => {
+    auth.setIsAuth(false)
+  }
+
   return (
     <div className={s.header}>
       <div className={s.header__nav}>
@@ -23,9 +30,7 @@ const Header = () => {
         </ul>
         <div className={s.header__control}>
           {/* TODO change base-btn */}
-          <button>
-            <Link to={appRoutes.auth}>LOG OUT</Link>
-          </button>
+          <button onClick={logOut}>LOG OUT</button>
         </div>
       </div>
     </div>
