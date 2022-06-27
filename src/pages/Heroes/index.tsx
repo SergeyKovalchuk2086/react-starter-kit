@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import DefaultLayout from '../../layouts/defaultLayout'
 import HeroCard from '../../components/heroCard'
+import BaseSearchInput from '../../components/ui/BaseSerchInput'
 import stores from '../../store'
 import heroesService from '../../utils/apiServices/heroesService'
 
@@ -18,26 +19,29 @@ const Heroes = () => {
   const heroesStore = stores.heroesStore
   const loader = stores.loaderStore
 
-  const [page, setPage] = useState(1)
+  const [payload, setPayload] = useState({
+    page: 1,
+    search: ''
+  })
 
   const fetchData = useCallback(async() => {
     try {
       loader.setIsLoading(true)
-      const r = await heroesService.getHeroesPage(page)
+      const r = await heroesService.getHeroesPage(payload)
       heroesStore.changeHeroesPage(r)
     } catch (error) {
       console.log('error: ', error)
     }
     loader.setIsLoading(false)
-  }, [heroesStore, page, loader])
+  }, [heroesStore, payload, loader])
 
   useEffect(() => { fetchData() }, [fetchData])
 
   const changePage = (direction: PaginationDirection) => {
     if (direction === PaginationDirection.PREV && heroesStore.heroesPage.previous) {
-      setPage(page - 1)
+      setPayload({ ...payload, page: payload.page - 1 })
     } else if (direction === PaginationDirection.NEXT && heroesStore.heroesPage.next) {
-      setPage(page + 1)
+      setPayload({ ...payload, page: payload.page + 1 })
     }
   }
 
@@ -49,10 +53,15 @@ const Heroes = () => {
     return ''
   }
 
+  const handleChangeSearch = useCallback((value: string) => {
+    setPayload({ ...payload, search: value, page: 1 })
+  }, [setPayload, payload])
+
   return (
     <DefaultLayout>
       <div className={s.heroes}>
         <h3 className={`${s.heroes__title} pageTitle`}>THE STAR WARS HEROES</h3>
+        <BaseSearchInput search={payload.search} setSearch={handleChangeSearch}/>
         <div className={s.heroes__box}>
           {heroesStore.heroesPage?.results?.map(card => {
             const img = getImage(card.url)
