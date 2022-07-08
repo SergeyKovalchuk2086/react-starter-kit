@@ -60,7 +60,7 @@ const Auth = () => {
                         />
                     </div>
                     {touched.password && errors.password && <div className={style.content__body_error}>{errors.password}</div>}
-                    {<BaseBtn type='submit' disabled={!isValid && !dirty} className={style.content__btn}>LOGIN</BaseBtn>}
+                    <BaseBtn type='submit' disabled={!isValid && !dirty} className={style.content__btn}>LOGIN</BaseBtn>
                 </div>
             </form>
             )}
