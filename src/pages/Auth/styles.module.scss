@@ -29,7 +29,8 @@
             font-size: 12px;
         }
     }
-        & button {
+        &__btn {
+            max-width: 180px;
             margin-top: 15px;
         }
 }

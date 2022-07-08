@@ -1,0 +1,17 @@
+.baseBtn {
+  display: block;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid rgb(48, 51, 50);
+  border-radius: 8px;
+  background-color: darkgrey;
+  color: white;
+  box-shadow: 3px 3px 5px rgba(81, 81, 81, 0.25);
+  transition: background-color .4s;
+  &:hover {
+    background-color: rgb(146, 146, 146);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+}

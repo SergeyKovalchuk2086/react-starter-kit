@@ -5,6 +5,7 @@ import style from './styles.module.scss'
 import stores from '../../store';
 import { useNavigate } from 'react-router';
 import { appRoutes } from '../../configs';
+import BaseBtn from '../../components/ui/BaseBtn';
 
 const initialValues = {
   username: '',
@@ -34,7 +35,7 @@ const Auth = () => {
           validationSchema={validationAuthSchema}
         >
           {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }: any): JSX.Element => (
-            <div className={style.content}>
+            <form onSubmit={handleSubmit} className={style.content}>
                 <div className={style.content__body}>
                     <p>Login</p>
                     <div className={style.content__body_username}>
@@ -59,15 +60,9 @@ const Auth = () => {
                         />
                     </div>
                     {touched.password && errors.password && <div className={style.content__body_error}>{errors.password}</div>}
-                    <button
-                        disabled={!isValid && !dirty}
-                        onClick={handleSubmit}
-                        type='submit'
-                    >
-                        LOGIN
-                    </button>
+                    {<BaseBtn type='submit' disabled={!isValid && !dirty} className={style.content__btn}>LOGIN</BaseBtn>}
                 </div>
-            </div>
+            </form>
             )}
         </Formik>
       </div>
