@@ -19,6 +19,7 @@ enum PaginationDirection {
 const Heroes = () => {
   const heroesStore = stores.heroesStore
   const loader = stores.loaderStore
+  const modal = stores.modalsStore
 
   const [payload, setPayload] = useState({
     page: 1,
@@ -54,11 +55,9 @@ const Heroes = () => {
     setPayload({ ...payload, search: value, page: 1 })
   }, [setPayload, payload])
 
-  const modal = stores.modalsStore
-
-  const getPlanet = async (url: string) => {
-    loader.setIsLoading(true)
+  const getPlanet = useCallback(async (url: string) => {
     try {
+      loader.setIsLoading(true)
       const planet = await heroesService.getPlanetByHero(getIdFromUrl(url))
       modal.showModal({
         key: ModalKeY.Planet,
@@ -70,7 +69,7 @@ const Heroes = () => {
     } finally  {
       loader.setIsLoading(false)
     }
-  }
+  }, [loader, modal])
 
   return (
     <DefaultLayout>
@@ -84,7 +83,7 @@ const Heroes = () => {
                 key={card.height + card.name}
                 card={card}
                 img={getImage(card.url)}
-                onClick={() => getPlanet(card.homeworld)}
+                showPlanet={() => getPlanet(card.homeworld)}
               />
             )
           })}

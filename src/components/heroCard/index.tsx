@@ -6,11 +6,11 @@ import s from './styles.module.scss'
 interface IProps {
   card: IHero,
   img: string,
-  onClick: () => void | Promise<void>
+  showPlanet: () => void | Promise<void>
 }
 
 const HeroCard = (props: IProps) => {
-  const { card, img, onClick } = props
+  const { card, img, showPlanet } = props
 
   return (
     <div className={s.heroCard}>
@@ -23,7 +23,7 @@ const HeroCard = (props: IProps) => {
           ОПИСАНИЕ
         </div>
 
-        <BaseBtn className={s.heroCard__planet} onClick={onClick}>Homeworld</BaseBtn>
+        <BaseBtn className={s.heroCard__planet} onClick={showPlanet}>Homeworld</BaseBtn>
       </div>
     </div>
   )
