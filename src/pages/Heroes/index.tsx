@@ -48,7 +48,7 @@ const Heroes = () => {
   const getImage = (url: string): string => {
     const id = url.replace(/[^0-9]/g,"")
     if (id) {
-      return `${IMAGE_URL}/${id}.jpg`
+      return `${IMAGE_URL}/characters/${id}.jpg`
     }
     return ''
   }

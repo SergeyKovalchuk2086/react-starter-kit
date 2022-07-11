@@ -1,7 +1,7 @@
-import React from 'react'
+import { ButtonHTMLAttributes } from 'react'
 import s from './styles.module.scss'
 
-const BaseBtn = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
+const BaseBtn = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
   const {
     children,
     className,

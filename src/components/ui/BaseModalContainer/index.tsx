@@ -24,6 +24,7 @@ const BaseModalContainer = () => {
             {options.title || 'DEFAULT'}
           </p>
           <button
+            type='button'
             className={s.baseModal__close}
             onClick={(e: any) => closeModal(e)}
           >
