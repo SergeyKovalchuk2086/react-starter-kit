@@ -1,10 +1,12 @@
 import { action, makeAutoObservable, observable } from 'mobx'
+import { IPlanet } from '../../utils/apiServices/types'
 import { ModalKeY } from './modals'
 
 export interface IOptionsModal {
   key: ModalKeY
   title: string,
-  text: string,
+  text?: string,
+  item?: IPlanet,
   handler?<T>(arg?: T): void
 }
 

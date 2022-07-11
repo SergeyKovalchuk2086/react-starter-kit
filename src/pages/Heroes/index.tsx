@@ -7,17 +7,19 @@ import stores from '../../store'
 import heroesService from '../../utils/apiServices/heroesService'
 
 import s from './styles.module.scss'
+import { ModalKeY } from '../../store/Modals/modals'
+import { getIdFromUrl, getImageById } from '../../utils/functions/converters'
+import { Unit } from '../../utils/functions'
 
 enum PaginationDirection {
   PREV,
   NEXT
 }
 
-const IMAGE_URL = process.env.REACT_APP_BASE_IMAGE_URL
-
 const Heroes = () => {
   const heroesStore = stores.heroesStore
   const loader = stores.loaderStore
+  const modal = stores.modalsStore
 
   const [payload, setPayload] = useState({
     page: 1,
@@ -46,16 +48,28 @@ const Heroes = () => {
   }
 
   const getImage = (url: string): string => {
-    const id = url.replace(/[^0-9]/g,"")
-    if (id) {
-      return `${IMAGE_URL}/${id}.jpg`
-    }
-    return ''
+    return getImageById(Unit.characters, getIdFromUrl(url))
   }
 
   const handleChangeSearch = useCallback((value: string) => {
     setPayload({ ...payload, search: value, page: 1 })
   }, [setPayload, payload])
+
+  const getPlanet = useCallback(async (url: string) => {
+    try {
+      loader.setIsLoading(true)
+      const planet = await heroesService.getPlanetByHero(getIdFromUrl(url))
+      modal.showModal({
+        key: ModalKeY.Planet,
+        title: planet.name,
+        item: planet
+      })
+    } catch (error) {
+      console.log('🚀 ~ file: index.tsx ~ line 32 ~ getPlanet ~ error', error)
+    } finally  {
+      loader.setIsLoading(false)
+    }
+  }, [loader, modal])
 
   return (
     <DefaultLayout>
@@ -64,12 +78,12 @@ const Heroes = () => {
         <BaseSearchInput search={payload.search} setSearch={handleChangeSearch}/>
         <div className={s.heroes__box}>
           {heroesStore.heroesPage?.results?.map(card => {
-            const img = getImage(card.url)
             return (
               <HeroCard
                 key={card.height + card.name}
                 card={card}
-                img={img}
+                img={getImage(card.url)}
+                showPlanet={() => getPlanet(card.homeworld)}
               />
             )
           })}

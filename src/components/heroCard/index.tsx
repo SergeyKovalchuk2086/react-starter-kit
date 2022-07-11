@@ -1,14 +1,16 @@
 import { IHero } from '../../utils/apiServices/types'
+import BaseBtn from '../ui/BaseBtn'
 
 import s from './styles.module.scss'
 
 interface IProps {
-  card: IHero
-  img: string
+  card: IHero,
+  img: string,
+  showPlanet: () => void | Promise<void>
 }
 
 const HeroCard = (props: IProps) => {
-  const { card, img } = props
+  const { card, img, showPlanet } = props
 
   return (
     <div className={s.heroCard}>
@@ -17,7 +19,11 @@ const HeroCard = (props: IProps) => {
         <p className={s.heroCard__name}>{card.name}</p>
       </div>
       <div className={s.heroCard__back}>
-        ОПИСАНИЕ
+        <div>
+          ОПИСАНИЕ
+        </div>
+
+        <BaseBtn className={s.heroCard__planet} onClick={showPlanet}>Homeworld</BaseBtn>
       </div>
     </div>
   )

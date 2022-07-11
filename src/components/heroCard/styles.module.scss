@@ -34,6 +34,10 @@
   }
   &__back {
     transform: rotateY(180deg);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
   }
   &__image {
     width: 100%;
@@ -42,6 +46,9 @@
   }
   &__name {
     margin-top: 10px;
+  }
+  &__planet {
+    margin-top: auto;
   }
 }
 
