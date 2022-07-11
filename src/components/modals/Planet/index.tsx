@@ -23,7 +23,7 @@ const Planet = ({options}: IProps) => {
   }
 
   return (
-    <div>
+    <>
       <div className={s.planet__picture}>
         <img src={getImage()} alt={item?.name} className={s.planet__img} />
       </div>
@@ -38,7 +38,7 @@ const Planet = ({options}: IProps) => {
             </li>)
         }
       </ul>
-    </div>
+    </>
   )
 }
 
