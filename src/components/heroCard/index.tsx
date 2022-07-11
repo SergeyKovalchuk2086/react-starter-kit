@@ -1,37 +1,16 @@
-import stores from '../../store'
-import { ModalKeY } from '../../store/Modals/modals'
-import heroesService from '../../utils/apiServices/heroesService'
 import { IHero } from '../../utils/apiServices/types'
 import BaseBtn from '../ui/BaseBtn'
 
 import s from './styles.module.scss'
 
 interface IProps {
-  card: IHero
+  card: IHero,
   img: string,
+  onClick: () => void | Promise<void>
 }
 
 const HeroCard = (props: IProps) => {
-  const { card, img } = props
-
-  const loader = stores.loaderStore
-  const modal = stores.modalsStore
-
-  const getPlanet = async () => {
-    loader.setIsLoading(true)
-    try {
-      const planet = await heroesService.getPlanetByHero(card.homeworld)
-      modal.showModal({
-        key: ModalKeY.Planet,
-        title: planet.name,
-        item: planet
-      })
-    } catch (error) {
-      console.log('🚀 ~ file: index.tsx ~ line 32 ~ getPlanet ~ error', error)
-    } finally  {
-      loader.setIsLoading(false)
-    }
-  }
+  const { card, img, onClick } = props
 
   return (
     <div className={s.heroCard}>
@@ -44,7 +23,7 @@ const HeroCard = (props: IProps) => {
           ОПИСАНИЕ
         </div>
 
-        <BaseBtn className={s.heroCard__planet} onClick={getPlanet}>Planet</BaseBtn>
+        <BaseBtn className={s.heroCard__planet} onClick={onClick}>Homeworld</BaseBtn>
       </div>
     </div>
   )

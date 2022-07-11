@@ -1,12 +1,13 @@
 import { IOptionsModal } from '../../../store/Modals'
 import s from './styles.module.scss'
 import {IPlanet} from '../../../utils/apiServices/types'
+import { getIdFromUrl, getImageById } from '../../../utils/functions/converters'
+import { Unit } from '../../../utils/functions'
 
 interface IProps {
   options: IOptionsModal
 }
 
-const IMAGE_URL = process.env.REACT_APP_BASE_IMAGE_URL
 const keysOnList = [
   'climate',
   'diameter',
@@ -18,11 +19,7 @@ const Planet = ({options}: IProps) => {
   const { item } = options
 
   const getImage = (): string => {
-    const id = options.item?.url.replace(/[^0-9]/g,"")
-    if (id) {
-      return `${IMAGE_URL}/planets/${id}.jpg`
-    }
-    return ''
+    return getImageById(Unit.planets, getIdFromUrl(item!.url))
   }
 
   return (

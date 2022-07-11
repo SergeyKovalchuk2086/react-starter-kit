@@ -19,8 +19,7 @@ class HeroesService extends DataService {
     return r.data
   }
 
-  public async getPlanetByHero (planetUrl: string): Promise<IPlanet> {
-    const id = planetUrl.replace(/[^0-9]/g,"")
+  public async getPlanetByHero (id: string): Promise<IPlanet> {
     const r = await this.get<IRequestPost<IPlanet>>(`/planets/${id}`)
     return r.data
   }
