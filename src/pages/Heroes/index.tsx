@@ -8,7 +8,7 @@ import heroesService from '../../utils/apiServices/heroesService'
 
 import s from './styles.module.scss'
 import { ModalKeY } from '../../store/Modals/modals'
-import { getIdFromUrl, getImageById } from '../../utils/functions/converters'
+import { getIdFromUrl, getImageById } from '../../utils/functions'
 import { Unit } from '../../utils/functions'
 
 enum PaginationDirection {

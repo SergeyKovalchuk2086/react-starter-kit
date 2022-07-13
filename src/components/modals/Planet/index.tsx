@@ -1,7 +1,7 @@
 import { IOptionsModal } from '../../../store/Modals'
 import s from './styles.module.scss'
 import {IPlanet} from '../../../utils/apiServices/types'
-import { getIdFromUrl, getImageById } from '../../../utils/functions/converters'
+import { getIdFromUrl, getImageById } from '../../../utils/functions'
 import { Unit } from '../../../utils/functions'
 
 interface IProps {

@@ -1,8 +1,8 @@
-import { convertToSearchParams } from './searchParams'
+import { getIdFromUrl, getImageById } from './converters'
 
 export enum Unit {
   characters = 'characters',
   planets = 'planets'
 }
 
-export { convertToSearchParams }
+export { getIdFromUrl, getImageById }

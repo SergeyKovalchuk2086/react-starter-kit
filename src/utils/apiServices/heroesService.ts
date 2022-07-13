@@ -1,5 +1,4 @@
 import DataService from '.'
-import { convertToSearchParams } from '../functions'
 import { IHeroesPage, IPlanet, IRequestPost } from './types'
 
 type TGetHeroesPageProps = {
@@ -12,10 +11,9 @@ class HeroesService extends DataService {
     super(`${process.env.REACT_APP_API_BASE_URL}`)
   }
 
-  public async getHeroesPage (props: TGetHeroesPageProps): Promise<IHeroesPage> {
+  public async getHeroesPage (params: TGetHeroesPageProps): Promise<IHeroesPage> {
     // const { page, search } = props
-    const params = convertToSearchParams(props)
-    const r = await this.get<IRequestPost<IHeroesPage>>(`/people/?${params}`)
+    const r = await this.get<IRequestPost<IHeroesPage>>(`/people`, {params})
     return r.data
   }
 
